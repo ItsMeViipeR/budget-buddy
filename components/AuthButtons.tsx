@@ -63,3 +63,25 @@ export const LogoutButtonMobile = () => {
     </button>
   );
 };
+
+export const RegisterButton = () => {
+  return (
+    <a
+      href="/register"
+      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+    >
+      Register
+    </a>
+  );
+};
+
+export const RegisterButtonMobile = () => {
+  return (
+    <a
+      href="/register"
+      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+    >
+      Register
+    </a>
+  );
+};

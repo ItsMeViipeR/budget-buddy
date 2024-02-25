@@ -38,3 +38,7 @@ export const { auth, handlers } = NextAuth({
   },
   secret: process.env.NEXT_AUTH_SECRET,
 });
+
+export const getAuth = async () => {
+  return await auth();
+};

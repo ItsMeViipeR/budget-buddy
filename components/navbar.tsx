@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
-import { LoginButton, LoginButtonMobile, LogoutButton } from "./AuthButtons";
+import {
+  LoginButton,
+  LoginButtonMobile,
+  LogoutButton,
+  RegisterButton,
+} from "./AuthButtons";
+import { getAuth } from "@/src/lib/auth";
+import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const session = useSession().data;
 
   return (
     <div>
@@ -29,9 +38,14 @@ export const Navbar = () => {
                     Dashboard
                   </a>
 
-                  <LoginButton />
-
-                  <LogoutButton />
+                  {session && session?.user ? (
+                    <LogoutButton />
+                  ) : (
+                    <>
+                      <LoginButton />
+                      <RegisterButton />
+                    </>
+                  )}
                 </div>
               </div>
             </div>
