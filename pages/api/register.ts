@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "@/src/lib/prisma";
+import sha256 from "crypto-js/sha256";
 
 interface NextApiRequestBody {
   username: string;
@@ -17,13 +18,11 @@ export default async function handler(
   const { username, email, password }: NextApiRequestBody =
     req.body as NextApiRequestBody;
 
-  console.log(username, email, password);
-
   await prisma?.user.create({
     data: {
       name: username,
-      email,
-      password,
+      email: email.toLowerCase(),
+      password: sha256(password).toString(),
     },
   });
 

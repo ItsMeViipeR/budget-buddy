@@ -28,7 +28,9 @@ export default function Register() {
                   .post("/api/register", {
                     json: { username, email, password },
                   })
-                  .json();
+                  .text();
+
+                router.push("/api/auth/signin");
               }}
             >
               <div>
