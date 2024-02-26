@@ -22,7 +22,7 @@ export const LoginButtonMobile = () => {
       className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
       onClick={(e) => {
         e.preventDefault();
-        signIn();
+        signIn(undefined, { callbackUrl: "/dashboard" });
       }}
     >
       Login

@@ -2,6 +2,7 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 import NextAuth from "next-auth";
 import { prisma } from "@/src/lib/prisma";
 import CredentialsProvider from "next-auth/providers/credentials";
+import sha256 from "crypto-js/sha256";
 
 export const { auth, handlers } = NextAuth({
   adapter: PrismaAdapter(prisma),
@@ -21,7 +22,7 @@ export const { auth, handlers } = NextAuth({
         const user = await prisma.user.findFirst({
           where: {
             email: String(credentials.email),
-            password: String(credentials.password),
+            password: sha256(String(credentials.password)).toString(),
           },
         });
 
