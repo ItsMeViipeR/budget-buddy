@@ -38,6 +38,9 @@ export const { auth, handlers } = NextAuth({
     strategy: "jwt",
   },
   secret: process.env.NEXT_AUTH_SECRET,
+  pages: {
+    signIn: "/login",
+  },
 });
 
 export const getAuth = async () => {
